@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>ポートフォリオ</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <!-- <img src="images/main.jpg" alt="ポートフォリオサイト"> -->
+                <h1>portfolio</h1>                 
+            </header>
+            <article id="page">
+                <h2>WORK</h2>
+                <section>
+                    <h3>WEBDesign</h3>
+                    <hr>
+                    <p>【ROYAL PIRATEISSTUDIO A・CORE】</p>
+                </section>
+                <section>
+                    <img src="images/page/acoa_img.jpg" alt="acoa" width="1000">
+                </section>
+                <section>
+                    <script type="text/x-template" id="modal-template">
+                        <div name="modal">
+                            <div class="modal-mask">
+                                <div class="modal-wrapper">
+                                    <div class="modal-container">
+                                        <div class="modal-header">
+                                            <slot name="header">
+                                                <img src="images/page/acoa_pc.png" alt="" width="250" height="630">
+                                            </slot>
+                                            <slot name="footer">
+                                                <button class="close-button" @click="$emit('close')">close</button>
+                                            </slot>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+                    <!-- app -->
+                    <div id="app">                             
+                        <div id="show-modal" @click="showModal = true"><img src="images/page/page_acoa.jpg" alt="">
+                        <p>写真をクリックすると拡大します</p></div>
+                        <!-- use the modal component, pass in the prop -->
+                        <modal v-if="showModal" @close="showModal = false">
+                        </modal>
+                    </div>
+                </section>
+                <section>
+                    <p>東京都港区にあるピラティススタジオのリニューアルサイトを制作させていただきました。</p>
+                </section>
+            </article>
+            <aside>
+                <section id="language">
+                    <p>WordPress/JavaScript/HTNL5/Scss</p>
+　              </section>
+            </aside>           
+            <footer>
+                <p>&copy; 2019 hasegawashino portfolio</p>
+            </footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+  // register modal component
+        Vue.component('modal', {
+        template: '#modal-template'
+        })
+
+        // start app
+        new Vue({
+        el: '#app',
+        data: {
+            showModal: false
+        }
+        })
+  </script>
+    </body>
+</html>
